@@ -97,7 +97,10 @@ def send_text_file(file_name):
 
 @app.route('/logout')
 def logout():
-    pass
+    logout_user()
+    flash('Logged out successfully')
+    return redirect(url_for('home'))
+    
 
 @app.route('/files')
 @login_required
