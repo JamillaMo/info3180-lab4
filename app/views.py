@@ -40,7 +40,7 @@ def upload():
     
     elif request.method == "POST":
         if form.validate_on_submit():
-            filename = secure_filename(photo.filename)
+            filename = secure_filename(form.filename)
             form.save(os.path.join(
             app.config['UPLOAD_FOLDER'], filename
         ))
@@ -95,6 +95,14 @@ def send_text_file(file_name):
     file_dot_text = file_name + '.txt'
     return app.send_static_file(file_dot_text)
 
+@app.route('/logout')
+def logout():
+    pass
+
+@app.route('/files')
+@login_required
+def files():
+    return render_template("files.html")
 
 @app.after_request
 def add_header(response):
